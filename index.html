@@ -73,6 +73,12 @@
       transform-origin:center;
     }
 
+    .hero video {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+
+
     /* Workshops */
     .wrap{max-width:900px;margin:48px auto;padding:0 20px;}
     .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
@@ -88,7 +94,10 @@
 <body>
 
 <header class="hero">
-  <video src="v12044gd0000cm6vmdvog65tnqg8a0eg.MP4" autoplay muted loop playsinline></video>
+  <video autoplay muted loop playsinline preload="auto">
+  <source src="hero.mp4" type="video/mp4">
+</video>
+
 
   <div class="inner">
     <h1>BABAK DAVALLOU</h1>
