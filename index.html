@@ -60,6 +60,12 @@
     /* TikTok = ausgefüllt schwarz */
     .btn .ico svg[fill="black"]{ stroke:none; }
 
+    .ico-small svg {
+    transform: scale(0.82);   /* E-Mail Icon wird ~18% kleiner, bleibt perfekt zentriert */
+    transform-origin: center;
+  }
+
+
     /* Workshops */
     .wrap{max-width:900px;margin:48px auto;padding:0 20px;}
     .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
@@ -84,7 +90,7 @@
 
       <!-- Instagram (Outline) -->
       <a class="btn" href="INSTAGRAM_URL" target="_blank" rel="noopener">
-        <span class="ico">
+        <span class="ico ico-small">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
