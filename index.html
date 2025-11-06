@@ -33,9 +33,11 @@
       display:flex; align-items:center; justify-content:center;
       text-align:center; overflow:hidden;
     }
-    .hero video{
+^  .hero video{
       position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; filter:brightness(.55);
+      object-fit: cover;
+      object-position: 50% 20%;   /* ← schiebt das Video nach oben */
+      filter: brightness(.55);
     }
     .hero::after{
       content:""; position:absolute; inset:0;
