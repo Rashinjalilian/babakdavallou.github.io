@@ -5,228 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BABAK DAVALLOU</title>
 
-  <!-- Urban Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --text:#fff;
-      --glass: rgba(255,255,255,0.10);
-      --border: rgba(255,255,255,.22);
-      --btn-h: rgba(255,255,255,.25);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 10px;   /* urbaner, nicht zu rund */
+      --glass: rgba(0,0,0,0.4);   /* Overlay jetzt durchgehend */
+      --border: rgba(255,255,255,.28);
+      --btn-h: rgba(255,255,255,.18);
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 16px;
       --maxw: 560px;
     }
 
-    html, body { height:100%; }
-    *{ box-sizing:border-box; margin:0; }
-    body{
-      background:#000; color:var(--text);
-      font-family:'Inter',system-ui,Arial,sans-serif;
-      overflow-x:hidden; -webkit-font-smoothing:antialiased;
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body,html{
+      height:100%;
+      font-family:system-ui, Arial, sans-serif;
+      color:var(--text);
+      overflow-x:hidden;
     }
 
-    /* HERO mit fixiertem Video */
-    .hero{
-      position:relative; min-height:85vh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; overflow:hidden;
-    }
-    .hero video{
-      position:fixed; top:0; left:0; width:100vw; height:100vh;
-      object-fit:cover; object-position:50% 34%;
-      z-index:-2; filter:brightness(.62);
-    }
-
-    /* VIDEO HINTERGRUND BLEIBT FIXIERT */
+    /* 🔥 Hintergrund fixiert */
     body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    pointer-events:none;
-    background:linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.15),
-      rgba(0,0,0,0.55)
-  );
-}
-
-    
-    .inner{ z-index:2; width:100%; max-width:var(--maxw); padding:20px; }
-    h1{
-      font-size:clamp(34px,7vw,62px);
-      margin-bottom:28px; font-weight:600; letter-spacing:.06em;
+      content:"";
+      position:fixed;
+      inset:0;
+      background:url("hero.MP4") center/cover no-repeat;
+      z-index:-2;
     }
 
-    /* Social-Buttons */
-    .links{ display:flex; flex-direction:column; gap:12px; }
-    .btn{
-      display:flex; align-items:center; justify-content:center; gap:12px;
-      padding:14px 18px; width:100%;
-      border:1px solid var(--border); background:var(--glass);
-      border-radius:var(--radius); color:var(--text); text-decoration:none;
-      font-weight:500; backdrop-filter:blur(6px);
-      box-shadow:var(--shadow); transition:.25s;
-    }
-    .btn:hover{ background:var(--btn-h); transform:translateY(-1px); }
-    .ico{
-      width:22px; height:22px; flex:0 0 22px;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .ico svg{ width:100%; height:100%; }
-    .ico svg[fill="none"]{ stroke:black; fill:transparent; stroke-width:1.6; } /* Outline (IG, Mail) */
-    .ico svg[fill="black"]{ stroke:none; }                                    /* TikTok filled */
-    .ico-small svg{ transform:scale(.70); transform-origin:center; }          /* Mail optisch kleiner */
-
-    /* Section-Wrapper unter dem Video – mit mehr Abstand nach oben */
-    .wrap{
-      max-width:900px;
-      margin:140px auto 0;   /* <-- Abstand zum Ende des Videos */
-      padding:0 20px 80px;
+    /* 🔥 Video statt Bild */
+    video{
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      object-fit:cover;
+      filter:brightness(.55);
+      z-index:-3;
     }
 
-    /* Titel: UPCOMING */
-    .section-title{
+    /* 🔥 Durchgehendes Overlay */
+    .page-overlay{
+      position:fixed;
+      inset:0;
+      background:var(--glass);
+      backdrop-filter:blur(6px);
+      z-index:-1;
+    }
+
+    .inner{
+      max-width:var(--maxw);
+      margin:auto;
+      padding:40px 20px 20px;
       text-align:center;
-      font-size:clamp(28px,5vw,42px);
+    }
+
+    h1{
+      font-size: clamp(34px,7vw,62px);
       font-weight:700;
-      letter-spacing:.12em;
-      margin:0 0 40px;
-      opacity:.95;
-      text-transform:uppercase;
-    }
-    .section-title::after{
-      content:""; display:block; width:32px; height:2px;
-      background:#fff; opacity:.4; margin:14px auto 0;
+      margin-bottom:28px;
     }
 
-    /* Workshops – Luxury Card Look */
-    .workshops{
-      display:flex; flex-direction:column; gap:18px;
-      max-width:var(--maxw); margin:0 auto;
-    }
-    .workshop{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding:16px 22px;
-      border:1px solid var(--border); background:var(--glass);
-      border-radius:var(--radius); backdrop-filter:blur(6px);
+    /* BUTTONS */
+    .links{display:flex;flex-direction:column;gap:14px;margin-bottom:60px;}
+    .btn{
+      display:flex;align-items:center;justify-content:center;
+      gap:12px;width:100%;
+      padding:14px 18px;
+      border:1px solid var(--border);
+      background:var(--glass);
+      border-radius:var(--radius);
+      color:var(--text);text-decoration:none;font-weight:600;
+      backdrop-filter:blur(7px);
       box-shadow:var(--shadow);
+      transition:.2s;
     }
-    .info{ display:flex; flex-direction:column; gap:4px; text-align:left; }
-    .topline{
-      display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
-      font-size:17px;
-    }
-    .city{ font-weight:700; letter-spacing:.02em; }
-    .dash{ opacity:.55; }              /* Trennstrich/Separator */
-    .genre{ opacity:.85; font-weight:500; }
+    .btn:hover{background:var(--btn-h);transform:translateY(-1px);}
 
-    .date{ font-size:14px; opacity:.7; letter-spacing:.02em; }
-
-    .ticket-btn{
-      padding:8px 16px; border-radius:var(--radius);
-      border:1px solid var(--border); background:var(--glass);
-      color:var(--text); text-decoration:none; font-size:14px; font-weight:600;
-      backdrop-filter:blur(6px); transition:.25s; white-space:nowrap;
+    /* ICONS */
+    .btn .ico{
+      width:22px;height:22px;display:flex;align-items:center;justify-content:center;
+      flex:0 0 22px;
     }
-    .ticket-btn:hover{ background:var(--btn-h); transform:translateY(-1px); }
+    .btn svg{width:100%;height:100%;}
+    .btn .ico svg[fill="none"]{stroke:black;fill:transparent;}
+    .btn .ico svg[fill="black"]{stroke:none;}
+
+    /* Email & Insta kleiner */
+    .ico-small svg{
+      transform:scale(.75);
+      transform-origin:center;
+    }
+
+    /* UPCOMING SECTION */
+    .upcoming-wrapper{
+      margin-top:40px;    /* Abstand reduziert 👌 */
+      text-align:center;
+      padding-bottom:120px;
+    }
+
+    .upcoming-title{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:2px;
+      margin-bottom:30px; /* Extra Tipp */
+    }
+
+    .event-card{
+      max-width:var(--maxw);
+      margin:auto;
+      padding:18px 20px;
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      backdrop-filter:blur(6px);
+      box-shadow:var(--shadow);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+    }
+
+    .event-info{
+      text-align:left;
+      font-size:15px;
+      line-height:1.35;
+    }
+    .event-info strong{font-size:16px;font-weight:600;}
+
+    .tickets-btn{
+      padding:10px 16px;
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      transition:.2s;
+      white-space:nowrap;
+    }
+    .tickets-btn:hover{background:var(--btn-h);}
   </style>
 </head>
 <body>
 
-  <!-- Fixierter Video-Hintergrund -->
-  <header class="hero">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="hero.mp4" type="video/mp4">
-    </video>
+<video src="hero.MP4" autoplay muted loop playsinline></video>
+<div class="page-overlay"></div>
 
-    <div class="inner">
-      <h1>BABAK DAVALLOU</h1>
+<div class="inner">
 
-      <div class="links">
-        <!-- Instagram (Outline) -->
-        <a class="btn" href="INSTAGRAM_URL" target="_blank" rel="noopener">
-          <span class="ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17" cy="7" r="1.5"/>
-            </svg>
-          </span>
-          <span>Instagram</span>
-        </a>
+  <h1>BABAK DAVALLOU</h1>
 
-        <!-- TikTok #1 (Filled) -->
-        <a class="btn" href="TIKTOK1_URL" target="_blank" rel="noopener">
-          <span class="ico">
-            <svg viewBox="0 0 256 256" fill="black" aria-hidden="true">
-              <path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/>
-            </svg>
-          </span>
-          <span>TikTok #1</span>
-        </a>
+  <div class="links">
 
-        <!-- TikTok #2 (Filled) -->
-        <a class="btn" href="TIKTOK2_URL" target="_blank" rel="noopener">
-          <span class="ico">
-            <svg viewBox="0 0 256 256" fill="black" aria-hidden="true">
-              <path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/>
-            </svg>
-          </span>
-          <span>TikTok #2</span>
-        </a>
+    <!-- Instagram -->
+    <a class="btn" href="INSTAGRAM_URL" target="_blank">
+      <span class="ico ico-small">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17" cy="7" r="1.5"/>
+        </svg>
+      </span>
+      <span>Instagram</span>
+    </a>
 
-        <!-- E-Mail (Outline, kleiner) -->
-        <a class="btn" href="mailto:EMAIL@DEINE.DOMAIN" rel="noopener">
-          <span class="ico ico-small">
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M2 4l10 8 10-8"/>
-            </svg>
-          </span>
-          <span>E-Mail</span>
-        </a>
-      </div>
+    <!-- TikTok #1 -->
+    <a class="btn" href="TIKTOK1_URL" target="_blank">
+      <span class="ico">
+        <svg viewBox="0 0 256 256" fill="black"><path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/></svg>
+      </span>
+      <span>TikTok #1</span>
+    </a>
+
+    <!-- TikTok #2 -->
+    <a class="btn" href="TIKTOK2_URL" target="_blank">
+      <span class="ico">
+        <svg viewBox="0 0 256 256" fill="black"><path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/></svg>
+      </span>
+      <span>TikTok #2</span>
+    </a>
+
+    <!-- Email -->
+    <a class="btn" href="mailto:EMAIL@DEINE.DOMAIN">
+      <span class="ico ico-small">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M2 4l10 8 10-8"/>
+        </svg>
+      </span>
+      <span>E-Mail</span>
+    </a>
+
+  </div>
+
+</div>
+
+<!-- UPCOMING SECTION -->
+<section class="upcoming-wrapper">
+
+  <div class="upcoming-title">UPCOMING</div>
+
+  <div class="event-card">
+    <div class="event-info">
+      06.12.2025<br>
+      <strong>Frankfurt – Reggaeton Workshop</strong>
     </div>
-  </header>
+    <a class="tickets-btn" href="YOUR_TICKETS_LINK" target="_blank">TICKETS</a>
+  </div>
 
-  <!-- Section: UPCOMING + Workshops -->
-  <main class="wrap">
-    <h2 class="section-title">UPCOMING</h2>
-
-    <div class="workshops">
-
-      <!-- FRANKFURT -->
-      <div class="workshop">
-        <div class="info">
-          <div class="topline">
-            <span class="city">Frankfurt</span>
-            <span class="dash">—</span>
-            <span class="genre">Reggaeton Workshop</span>
-          </div>
-          <div class="date">06.12.2025</div>
-        </div>
-        <a class="ticket-btn" href="FRANKFURT_TICKET_URL" target="_blank" rel="noopener">TICKETS</a>
-      </div>
-
-      <!-- Weitere Termine: einfach duplizieren
-      <div class="workshop">
-        <div class="info">
-          <div class="topline">
-            <span class="city">Köln</span>
-            <span class="dash">—</span>
-            <span class="genre">Urban Fusion</span>
-          </div>
-          <div class="date">14.12.2025</div>
-        </div>
-        <a class="ticket-btn" href="#" target="_blank" rel="noopener">TICKETS</a>
-      </div>
-      -->
-
-    </div>
-  </main>
+</section>
 
 </body>
 </html>
