@@ -1,152 +1,25 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BABAK DAVALLOU</title>
-
-  <style>
-    :root{
-      --text:#fff;
-      --icon:#000; /* Schwarze Icons */
-      --glass: rgba(255,255,255,0.10);
-      --border: rgba(255,255,255,.22);
-      --btn-h: rgba(255,255,255,.25);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 16px;
-      --maxw: 560px;
-    }
-
-    *{box-sizing:border-box;margin:0;}
-    body{
-      background:#000; color:var(--text);
-      font-family:system-ui, Arial, sans-serif;
-      overflow-x:hidden;
-    }
-
-    /* Hero */
-    .hero{
-      position:relative;
-      height:80vh;
-      min-height:540px;
-      overflow:hidden;
-      display:flex; justify-content:center; align-items:center;
-      text-align:center;
-    }
-    .hero video{
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; object-position:50% 20%;
-      filter:brightness(.55);
-      z-index:-1;
-    }
-    .inner{z-index:2; width:100%; max-width:var(--maxw); padding:20px;}
-
-    h1{
-      font-size: clamp(34px,7vw,62px);
-      margin-bottom:26px;
-      font-weight:600;
-    }
-
-    /* Buttons */
-    .links{display:flex; flex-direction:column; gap:12px;}
-    .btn{
-      background:var(--glass);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:14px 18px;
-      display:flex; align-items:center; justify-content:center;
-      gap:12px;
-      color:var(--text);
-      text-decoration:none;
-      font-weight:600;
-      backdrop-filter:blur(6px);
-      transition:.2s;
-    }
-    .btn:hover{background:var(--btn-h); transform:translateY(-1px);}
-    .btn svg{width:22px; height:22px; fill:var(--icon);}
-
-    /* Workshops */
-    .wrap{max-width:900px;margin:48px auto;padding:0 20px;}
-    .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
-    .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-    .chip{padding:6px 10px;border-radius:50px;border:1px solid var(--border);font-size:12px;opacity:.9;}
-    .grid{display:grid;gap:14px;}
-    @media(min-width:700px){ .grid{grid-template-columns:repeat(2,1fr);} }
-    .event{padding:14px;border:1px solid var(--border);border-radius:var(--radius);}
-    .event .when{font-weight:600;margin-bottom:6px;}
-    footer{text-align:center;margin-top:40px;opacity:.7;font-size:13px;}
-  </style>
-</head>
-
-<body>
-
-<header class="hero">
-  <video src="v12044gd0000cm6vmdvog65tnqg8a0eg.MP4" autoplay muted loop playsinline></video>
-
-  <div class="inner">
-    <h1>BABAK DAVALLOU</h1>
-
-    <div class="links">
-
-      <!-- Instagram -->
-      <a class="btn" href="INSTAGRAM_URL" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.5"/></svg>
-        <span>Instagram</span>
-      </a>
-
-      <!-- TikTok #1 -->
-      <a class="btn" href="TIKTOK1_URL" target="_blank">
-        <svg viewBox="0 0 256 256"><path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/></svg>
-        <span>TikTok #1</span>
-      </a>
-
-      <!-- TikTok #2 -->
-      <a class="btn" href="TIKTOK2_URL" target="_blank">
-        <svg viewBox="0 0 256 256"><path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/></svg>
-        <span>TikTok #2</span>
-      </a>
-
-      <!-- Email -->
-      <a class="btn" href="mailto:EMAIL@DEINE.DOMAIN">
-        <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="M3 5l9 7 9-7"/></svg>
-        <span>E-Mail</span>
-      </a>
-
-    </div>
-  </div>
-</header>
-
-<main class="wrap">
-  <section class="card">
-    <div class="head">
-      <h2>Nächste Workshops</h2>
-      <span class="chip" id="countChip">0 Termine</span>
-    </div>
-    <div class="grid" id="eventsGrid"></div>
-    <div id="emptyState" style="text-align:center;opacity:.7;margin-top:12px;display:none;">Demnächst ✨</div>
-  </section>
-  <footer>Let’s dance & connect.</footer>
-</main>
-
-<script>
-const events = []; // Termine kommen später hier rein
-const today=new Date();today.setHours(0,0,0,0);
-const upcoming=events.map(e=>({...e,d:new Date(e.date)})).filter(e=>e.d>=today).sort((a,b)=>a.d-b.d);
-document.getElementById("countChip").textContent = upcoming.length===1 ? "1 Termin" : `${upcoming.length} Termine`;
-if(upcoming.length===0){document.getElementById("emptyState").style.display="block";}
-else{
-  const fmt=new Intl.DateTimeFormat("de-DE",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
-  const grid=document.getElementById("eventsGrid");
-  upcoming.forEach(e=>{
-    const c=document.createElement("div");
-    c.className="event";
-    c.innerHTML=`<div class="when">${fmt.format(e.d)}${e.time?" · "+e.time+" Uhr":""}</div>
-    <div class="where">${e.city}${e.venue?" – "+e.venue:""}</div>
-    ${e.link?`<a class="btn" href="${e.link}" target="_blank" rel="noopener">Tickets</a>`:""}`;
-    grid.appendChild(c);
-  });
+/* BUTTON ICON FIX (für zentrierte Icons & Text) */
+.btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  text-align:center;
 }
-</script>
 
-</body>
-</html>
+/* Box sorgt dafür, dass jedes Icon dieselbe "Breite" einnimmt */
+.btn .ico {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;   /* → sorgt für perfekten optischen Ausgleich */
+  height:22px;
+}
+
+/* Macht SVG sauber & scharf, ohne Verzerrung */
+.btn svg {
+  width:100%;
+  height:100%;
+  stroke:black;     /* Outline Icons = schwarz */
+  fill:black;       /* TikTok Silhouette = schwarz */
+}
