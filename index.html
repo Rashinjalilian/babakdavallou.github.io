@@ -34,9 +34,9 @@
       filter:brightness(.55); z-index:-1;
     }
     .inner{z-index:2; width:100%; max-width:var(--maxw); padding:20px;}
-    h1{font-size: clamp(34px,7vw,62px); margin-bottom:26px; font-weight:700; letter-spacing:.4px;}
+    h1{font-size: clamp(34px,7vw,62px); margin-bottom:26px; font-weight:700;}
 
-    /* Buttons */
+    /* BUTTONS */
     .links{display:flex; flex-direction:column; gap:12px;}
     .btn{
       display:flex; align-items:center; justify-content:center; gap:12px;
@@ -47,24 +47,31 @@
     }
     .btn:hover{ background:var(--btn-h); transform:translateY(-1px); }
 
-    /* Iconbox sorgt für perfekte Zentrierung */
+    /* Icon box */
     .btn .ico{
-      width:22px; height:22px; display:flex; align-items:center; justify-content:center;
+      width:22px; height:22px;
+      display:flex; align-items:center; justify-content:center;
       flex:0 0 22px;
     }
-    .btn svg{ width:100%; height:100%; }
+    .btn svg{
+      width:100%; height:100%;
+    }
 
-    /* Instagram + Mail = Outline (innen transparent) */
-    .btn .ico svg[fill="none"]{ stroke:black; fill:transparent; }
+    /* Instagram & Mail = outline (transparent innen) */
+    .btn .ico svg[fill="none"]{
+      stroke:black; fill:transparent;
+    }
 
     /* TikTok = ausgefüllt schwarz */
-    .btn .ico svg[fill="black"]{ stroke:none; }
+    .btn .ico svg[fill="black"]{
+      stroke:none;
+    }
 
-    .ico-small svg {
-    transform: scale(0.82);   /* E-Mail Icon wird ~18% kleiner, bleibt perfekt zentriert */
-    transform-origin: center;
-  }
-
+    /* E-Mail kleiner */
+    .ico-small svg{
+      transform: scale(0.99);
+      transform-origin:center;
+    }
 
     /* Workshops */
     .wrap{max-width:900px;margin:48px auto;padding:0 20px;}
@@ -88,9 +95,9 @@
 
     <div class="links">
 
-      <!-- Instagram (Outline) -->
-      <a class="btn" href="INSTAGRAM_URL" target="_blank" rel="noopener">
-        <span class="ico ico-small">
+      <!-- Instagram -->
+      <a class="btn" href="INSTAGRAM_URL" target="_blank">
+        <span class="ico">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
@@ -100,29 +107,29 @@
         <span>Instagram</span>
       </a>
 
-      <!-- TikTok #1 (Filled) -->
-      <a class="btn" href="TIKTOK1_URL" target="_blank" rel="noopener">
+      <!-- TikTok 1 -->
+      <a class="btn" href="TIKTOK1_URL" target="_blank">
         <span class="ico">
-          <svg viewBox="0 0 256 256" fill="black" aria-hidden="true">
+          <svg viewBox="0 0 256 256" fill="black">
             <path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/>
           </svg>
         </span>
         <span>TikTok #1</span>
       </a>
 
-      <!-- TikTok #2 (Filled) -->
-      <a class="btn" href="TIKTOK2_URL" target="_blank" rel="noopener">
+      <!-- TikTok 2 -->
+      <a class="btn" href="TIKTOK2_URL" target="_blank">
         <span class="ico">
-          <svg viewBox="0 0 256 256" fill="black" aria-hidden="true">
+          <svg viewBox="0 0 256 256" fill="black">
             <path d="M168 32v42c12 9 26 14 40 14v36c-17 0-33-5-48-15v59a69 69 0 1 1-69-69h1v38a31 31 0 1 0 31 31V32Z"/>
           </svg>
         </span>
         <span>TikTok #2</span>
       </a>
 
-      <!-- E-Mail (Outline) -->
+      <!-- Email -->
       <a class="btn" href="mailto:EMAIL@DEINE.DOMAIN">
-        <span class="ico">
+        <span class="ico ico-small">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="4" width="20" height="16" rx="2"/>
             <path d="M2 4l10 8 10-8"/>
@@ -148,27 +155,12 @@
 </main>
 
 <script>
-const events = [
-  // { date:"2025-11-15", time:"18:00", city:"Bremen", venue:"Studio Renz", link:"https://pretix.link" },
-];
-
+const events = [];
 const today=new Date();today.setHours(0,0,0,0);
 const upcoming=events.map(e=>({...e,d:new Date(e.date)})).filter(e=>e.d>=today).sort((a,b)=>a.d-b.d);
 document.getElementById("countChip").textContent =
   upcoming.length===1 ? "1 Termin" : `${upcoming.length} Termine`;
 if(upcoming.length===0){document.getElementById("emptyState").style.display="block";}
-else{
-  const fmt=new Intl.DateTimeFormat("de-DE",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
-  const grid=document.getElementById("eventsGrid");
-  upcoming.forEach(e=>{
-    const c=document.createElement("div");
-    c.className="event";
-    c.innerHTML=`<div class="when">${fmt.format(e.d)}${e.time?" · "+e.time+" Uhr":""}</div>
-    <div class="where">${e.city}${e.venue?" – "+e.venue:""}</div>
-    ${e.link?`<a class="btn" href="${e.link}" target="_blank" rel="noopener">Tickets</a>`:""}`;
-    grid.appendChild(c);
-  });
-}
 </script>
 
 </body>
