@@ -3,159 +3,158 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Babak Davallou — Workshops & Links</title>
-  <meta name="description" content="Reggaeton Workshops & Private Coaching – Socials, Kontakt & Termine" />
+  <title>BABAK DAVALLOU</title>
+
   <style>
     :root{
       --text:#fff;
-      --glass: rgba(255,255,255,0.10);
+      --glass: rgba(255,255,255,0.08);
       --border: rgba(255,255,255,.18);
-      --btn: rgba(255,255,255,.20);
-      --btn-h: rgba(255,255,255,.32);
+      --btn-h: rgba(255,255,255,.22);
       --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --maxw: 1000px;
-      --maxw-narrow: 560px;
+      --radius: 16px;
+      --maxw: 560px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
+    *{box-sizing:border-box;margin:0}
     body{
       background:#000; color:var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      line-height:1.45;
+      font-family: system-ui, Arial, sans-serif;
+      line-height:1.5;
+      overflow-x:hidden;
     }
 
-    /* === HERO (Video als Hintergrund, Text darüber) === */
+    /* HERO mit Video */
     .hero{
       position:relative;
-      height: min(78vh, 720px);
-      min-height: 520px;
-      text-align:center;
-      overflow:hidden;
+      min-height:80vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; overflow:hidden;
     }
     .hero video{
       position:absolute; inset:0; width:100%; height:100%;
       object-fit:cover;
-      object-position:50% 20%;   /* vertikale Position des Ausschnitts (Kopf sichtbar) */
+      object-position:50% 20%; /* Kopf sichtbar */
       filter:brightness(.55);
-      z-index:-1;                /* Video hinter den Inhalt */
-    }
-    .hero::after{
-      content:""; position:absolute; inset:0;
-      background: radial-gradient(80% 80% at 50% 20%, rgba(0,0,0,.10), rgba(0,0,0,.65));
-      pointer-events:none;
+      z-index:-1;
     }
     .hero .inner{
       position:relative; z-index:2;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      height:100%; padding:0 20px; width:100%;
+      display:flex; flex-direction:column; align-items:center;
+      width:100%; max-width:var(--maxw); padding:20px;
     }
-    h1{margin:0 0 10px; font-size: clamp(34px, 7vw, 64px); letter-spacing:.6px}
+    h1{
+      font-size: clamp(34px,7vw,62px);
+      font-weight:600; letter-spacing:.5px;
+      margin-bottom:18px;
+    }
 
-    .links{display:grid; gap:12px; width:100%; max-width:var(--maxw-narrow); margin-top:16px}
+    /* Buttons */
+    .links{display:grid; gap:12px; width:100%;}
     .btn{
-      display:flex; align-items:center; justify-content:center; gap:10px;
-      width:100%; text-decoration:none; color:var(--text);
-      background:var(--btn); border:1px solid var(--border);
-      padding:14px 16px; border-radius:14px; font-weight:600; transition:.2s;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display:flex; align-items:center; justify-content:center; gap:12px;
+      padding:14px 16px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:var(--glass);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      transition:.2s;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(6px);
     }
-    .btn:hover,.btn:focus{ background:var(--btn-h); transform: translateY(-1px); }
+    .btn:hover{background:var(--btn-h); transform:translateY(-1px);}
 
-    /* === CONTENT === */
-    .wrap{max-width:var(--maxw); margin: 28px auto 72px; padding: 0 20px;}
-    .section.card{background:var(--glass); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);}
-    .section .head{display:flex; align-items:center; justify-content:space-between; padding:16px 18px}
-    .section h2{margin:0; font-size: clamp(18px, 3.6vw, 22px)}
-    .chip{padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.12); font-size:12px}
-    .grid{display:grid; gap:14px; padding: 0 18px 18px}
-    @media(min-width:720px){ .grid{ grid-template-columns: repeat(2,1fr); } }
-    .event{padding:16px; border:1px solid var(--border); border-radius:14px; background:rgba(0,0,0,.15)}
-    .event .when{font-weight:700; margin-bottom:6px}
-    .event .where{opacity:.9; margin-bottom:10px}
-    .event .actions{display:flex; gap:10px; flex-wrap:wrap}
-    .empty{padding:22px; text-align:center; opacity:.8}
-    footer{margin-top:26px; text-align:center; font-size:12px; opacity:.75}
-
-    /* Handy: Ausschnitt ggf. noch etwas höher */
-    @media (max-width: 480px){
-      .hero video{ object-position:50% 12%; }
+    .btn svg{
+      width:22px; height:22px;
+      flex-shrink:0;
     }
+
+    /* Workshops */
+    .wrap{max-width:900px;margin:50px auto;padding:0 20px;}
+    .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+    .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+    .chip{padding:6px 10px;border-radius:50px;border:1px solid var(--border);font-size:12px;opacity:.9;}
+    .grid{display:grid;gap:14px;}
+    @media(min-width:700px){ .grid{grid-template-columns:repeat(2,1fr);} }
+    .event{padding:14px;border:1px solid var(--border);border-radius:var(--radius);}
+    .event .when{font-weight:600;margin-bottom:6px;}
+    footer{margin-top:40px;text-align:center;opacity:.7;font-size:13px;}
+
   </style>
 </head>
 <body>
 
-  <!-- HERO mit Video-Hintergrund -->
-  <header class="hero" aria-label="Intro">
-    <video
-      src="v12044gd0000cm6vmdvog65tnqg8a0eg.MP4"
-      autoplay muted loop playsinline preload="metadata"
-    ></video>
+<header class="hero">
+  <video src="v12044gd0000cm6vmdvog65tnqg8a0eg.MP4" autoplay muted loop playsinline></video>
 
-    <div class="inner">
-      <h1>BABAK DAVALLOU</h1>
-      <div class="links">
-        <a class="btn" href="TIKTOK1_URL" target="_blank" rel="noopener">TikTok #1</a>
-        <a class="btn" href="TIKTOK2_URL" target="_blank" rel="noopener">TikTok #2</a>
-        <a class="btn" href="INSTAGRAM_URL" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn" href="mailto:EMAIL@DEINEDOMAIN.DE">E-Mail</a>
-      </div>
+  <div class="inner">
+    <h1>BABAK DAVALLOU</h1>
+
+    <div class="links">
+
+      <!-- TikTok #1 -->
+      <a class="btn" href="TIKTOK1_URL" target="_blank">
+        <svg viewBox="0 0 256 256"><path fill="#69C9D0" d="M..."/></svg>
+        <span>TikTok #1</span>
+      </a>
+
+      <!-- TikTok #2 -->
+      <a class="btn" href="TIKTOK2_URL" target="_blank">
+        <svg viewBox="0 0 256 256"><path fill="#69C9D0" d="M..."/></svg>
+        <span>TikTok #2</span>
+      </a>
+
+      <!-- Instagram -->
+      <a class="btn" href="INSTAGRAM_URL" target="_blank">
+        <svg viewBox="0 0 24 24"><linearGradient id="insta" .../></svg>
+        <span>Instagram</span>
+      </a>
+
+      <!-- Mail -->
+      <a class="btn" href="mailto:EMAIL@DEINEDOMAIN.DE">
+        <svg viewBox="0 0 24 24"><path stroke="currentColor" d="M..."/></svg>
+        <span>E-Mail</span>
+      </a>
+
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- CONTENT -->
-  <main class="wrap">
-    <section class="section card" aria-label="Nächste Workshops">
-      <div class="head">
-        <h2>Nächste Workshops</h2>
-        <span class="chip" id="countChip">0 Termine</span>
-      </div>
-      <div class="grid" id="eventsGrid"></div>
-      <div class="empty" id="emptyState" style="display:none">Demnächst ✨</div>
-    </section>
-
+<main class="wrap">
+  <section class="card">
+    <div class="head">
+      <h2>Nächste Workshops</h2>
+      <span class="chip" id="countChip">0 Termine</span>
+    </div>
+    <div class="grid" id="eventsGrid"></div>
+    <div id="emptyState" style="text-align:center;opacity:.7;margin-top:12px;display:none;">Demnächst ✨</div>
     <footer>Let’s dance & connect.</footer>
-  </main>
+</main>
 
-  <script>
-    /* === Hier Termine pflegen (nur dieses Array anpassen) === */
-    const events = [
-      // Beispiel:
-      // { date: "2025-11-15", time: "18:00", city: "Bremen",  venue: "Studio Renz", link: "https://pretix.example/bremen" },
-      // { date: "2025-11-16", time: "16:00", city: "Hamburg", venue: "OpenArea",    link: "https://pretix.example/hamburg" },
-    ];
+<script>
+const events = [
+  // Beispiel:
+  // { date:"2025-11-15", time:"18:00", city:"Bremen", venue:"Studio Renz", link:"https://pretix.link" },
+];
 
-    /* === Ab hier nichts ändern === */
-    const today = new Date(); today.setHours(0,0,0,0);
-    const upcoming = events
-      .map(e => ({...e, d: new Date(e.date)}))
-      .filter(e => e.d >= today)
-      .sort((a,b) => a.d - b.d);
+const today=new Date();today.setHours(0,0,0,0);
+const upcoming=events.map(e=>({...e,d:new Date(e.date)})).filter(e=>e.d>=today).sort((a,b)=>a.d-b.d);
+document.getElementById("countChip").textContent = upcoming.length+" Termine";
+if(upcoming.length===0){document.getElementById("emptyState").style.display="block";}
+else{
+  const fmt=new Intl.DateTimeFormat("de-DE",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
+  const grid=document.getElementById("eventsGrid");
+  upcoming.forEach(e=>{
+    const c=document.createElement("div");
+    c.className="event";
+    c.innerHTML=`<div class="when">${fmt.format(e.d)}${e.time?" · "+e.time+" Uhr":""}</div>
+    <div class="where">${e.city}${e.venue?" – "+e.venue:""}</div>
+    ${e.link?`<a class="btn" href="${e.link}" target="_blank">Tickets</a>`:""}`;
+    grid.appendChild(c);
+  });
+}
+</script>
 
-    const grid  = document.getElementById('eventsGrid');
-    const chip  = document.getElementById('countChip');
-    const empty = document.getElementById('emptyState');
-
-    chip.textContent = upcoming.length === 1 ? "1 Termin" : `${upcoming.length} Termine`;
-
-    if (upcoming.length === 0) {
-      empty.style.display = 'block';
-    } else {
-      const fmt = new Intl.DateTimeFormat('de-DE', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-      upcoming.forEach(e => {
-        const card = document.createElement('div');
-        card.className = 'event';
-        card.innerHTML = `
-          <div class="when">${fmt.format(e.d)}${e.time ? " · " + e.time + " Uhr" : ""}</div>
-          <div class="where">${e.city}${e.venue ? " – " + e.venue : ""}</div>
-          <div class="actions">
-            ${e.link ? `<a class="btn" href="${e.link}" target="_blank" rel="noopener">Tickets</a>` : ""}
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-  </script>
 </body>
 </html>
